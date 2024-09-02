@@ -40,7 +40,7 @@ Cafe - кафе, в котором есть определённое кол-во
 from threading import Thread
 from queue import Queue
 from random import randint, choice
-from time import sleep
+from time import sleep, strftime, localtime
 
 
 class Table:
@@ -132,7 +132,11 @@ guests = [Guest(name) for name in guests_names]
 # Заполнение кафе столами
 cafe = Cafe(*tables)
 # Приём гостей
+start_time = strftime('%H:%M:%S', localtime())
+print(f'Время прибытия гостей: {start_time}')
 cafe.guest_arrival(*guests)
 # Обслуживание гостей
 cafe.discuss_guests()
-
+end_time = strftime('%H:%M:%S', localtime())
+print(f'Время ухода гостей: {end_time}')
+print('Кафе закрыто')
